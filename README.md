@@ -1,4 +1,12 @@
+#Covid19 API APp
+
+An app that displays data from the covid19 api documented here:
+
+https://covid19api.com/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
