@@ -16,12 +16,12 @@ export const CaseChart = (props: CaseChartProps) => {
       text: props.title
     },
     xAxis: { type: "datetime" },
-    yAxis: { title: { text: "Total Number of Cases" } },
+    yAxis: { title: { text: "Number of Cases" } },
 
     series: [
       {
         type: "area",
-        name: `Total Number of ${props.caseStatus} by Date`,
+        name: `Number of ${props.caseStatus} reported`,
         //Do something about the Date Formats to make it neater
         data: generateSeriesDataFromCaseData(props.data)
       }
@@ -36,7 +36,8 @@ export const CaseChart = (props: CaseChartProps) => {
     const caseSeries = [];
 
     for (let i = 1; i < cases.length; i++) {
-      caseSeries.push([cases[i].Date, cases[i].Cases]);
+      const date = new Date(cases[i].Date); 
+      caseSeries.push([date.getTime(), cases[i].Cases]);
     }
 
     return caseSeries;

@@ -10,15 +10,16 @@ interface HomePageProps {}
 
 export const HomePage = (props: HomePageProps) => {
   const [countries, setCountries] = useState<CountrySummary[]>([]);
-  const [asOfDate, setAsOfDate] = useState<string>("");
+  const [asOfDate, setAsOfDate] = useState<Date>(new Date(Date.now()));
   const [filterText, setFilterText] = useState<string>("");
+  
   useEffect(() => {
     async function fetchInitialData() {
       fetch("https://api.covid19api.com/summary")
         .then((response: Response) => response.json())
         .then((summaryResponse: SummaryResponse) => {
           setCountries(summaryResponse.Countries);
-          setAsOfDate(summaryResponse.Date);
+          setAsOfDate(new Date(summaryResponse.Date));
           console.log(summaryResponse.Date);
         });
     }
@@ -38,10 +39,9 @@ export const HomePage = (props: HomePageProps) => {
   const filteredCountries = countries.filter(summary =>
     summary.Country.toLowerCase().startsWith(filterText.toLowerCase())
   );
-  //Also render your routes down here and place a link inside the CountrySummaryCard
   return (
     <>
-      <h3>As Of Date: {asOfDate}</h3>
+      <h3>As Of Date: {asOfDate.toLocaleDateString()}</h3>
       <label htmlFor="Country Name Filter">Filter By Country Name:</label>
       <input
         type="text"
