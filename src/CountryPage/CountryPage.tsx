@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CaseStatusEnum, CaseData } from "./types";
 import { CaseChart } from "./CaseChart";
 import { useParams, useLocation, useHistory } from "react-router";
+const {flag} = require("country-emoji");
 
 
 interface ParamTypes {
@@ -63,6 +64,7 @@ export const CountryPage = () => {
 
   return (
     <div>
+      <h1>{flag(countrySlug)}</h1>
       <h1>{
         (location && location.state) ? location.state.countryName : countrySlug.toUpperCase()
       }</h1>
