@@ -30,7 +30,7 @@ export const CountryPage = () => {
       countrySlug: string,
       caseStatus: CaseStatusEnum
     ): Promise<CaseData[]> {
-      const countryCasesURL = `https://api.covid19api.com/dayone/country/${countrySlug}/status/${caseStatus}/live`;
+      const countryCasesURL = `https://api.covid19api.com/total/country/${countrySlug}/status/${caseStatus}`;
       return fetch(countryCasesURL)
         .then((response: Response) => response.json())
         .then((cases: CaseData[]) => {
